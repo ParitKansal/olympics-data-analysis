@@ -133,11 +133,12 @@ if user_menu == 'Country-wise Analysis':
 #-----------------------------------------------------------------------------------------
 if user_menu == 'Athlete wise Analysis':
     athlete_df = df.drop_duplicates(subset=['Name', 'region', 'Year'])
+    athlete_df = athlete_df.dropna(subset=['Meadl'])
 
-    x1 = athlete_df['Age'].dropna()
-    x2 = athlete_df[athlete_df['Medal'] == 'Gold']['Age'].dropna()
-    x3 = athlete_df[athlete_df['Medal'] == 'Silver']['Age'].dropna()
-    x4 = athlete_df[athlete_df['Medal'] == 'Bronze']['Age'].dropna()
+    x1 = athlete_df['Age']
+    x2 = athlete_df[athlete_df['Medal'] == 'Gold']['Age']
+    x3 = athlete_df[athlete_df['Medal'] == 'Silver']['Age']
+    x4 = athlete_df[athlete_df['Medal'] == 'Bronze']['Age']
 
     fig = ff.create_distplot([x1, x2, x3, x4], ['Overall Age', 'Gold Medalist', 'Silver Medalist', 'Bronze Medalist'], show_hist=False, show_rug=False)
     fig.update_layout(autosize=False, width=800, height=500)
