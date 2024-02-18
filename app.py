@@ -163,6 +163,11 @@ if user_menu == 'Athlete wise Analysis':
     fig.update_layout(autosize=False, width=800, height=500)
     st.plotly_chart(fig)
     
+
+    sport_list = df['Sport'].unique().tolist()
+    sport_list.sort()
+    sport_list.insert(0, 'Overall')
+    
     st.title('Height Vs Weight')
     selected_sport = st.selectbox('Select a Sport', sport_list)
     temp_df = helper.weight_v_height(df, selected_sport)
