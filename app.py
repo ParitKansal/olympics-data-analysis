@@ -199,8 +199,4 @@ if user_menu == 'Athlete wise Analysis':
     fig.update_layout(autosize=False, width=800, height=500, barmode='overlay', title='Distribution of Age')
     st.plotly_chart(fig)
 
-    
-    
-    data_list1 = x1.to_list()
-    data_list2 = x2.to_list()
-    st.pyplot(helper.plot_density_graphs(data_list1, data_list2, labels=['Category A', 'Category B'], x_label='Age'))
+    st.pyplot(helper.plot_density_graphs(x1, x2, x3, x4, labels=['Overall Age', 'Gold Medalist', 'Silver Medalist', 'Bronze Medalist'], x_label='Age'))
