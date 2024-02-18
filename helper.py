@@ -113,7 +113,7 @@ def plot_density_graphs(*data_lists, labels=None, x_label):
     for i, data in enumerate(data_lists):
         sns.kdeplot(data, label=labels[i] if labels else f'Data {i+1}', ax=ax)
 
-    ax.set_xlabel(xlabel)
+    ax.set_xlabel(x_label)
     ax.set_ylabel('Probability')
     ax.legend()
     
