@@ -204,3 +204,31 @@ if user_menu == 'Athlete wise Analysis':
 
     # Show plot using Streamlit
     st.plotly_chart(fig)
+
+
+    import pandas as pd
+    import plotly.express as px
+    import streamlit as st
+
+    athlete_df = df.drop_duplicates(subset=['Name', 'region', 'Year'])
+    athlete_df = athlete_df.dropna(subset=['Medal'])
+
+    x1 = athlete_df['Age']
+    x2 = athlete_df[athlete_df['Medal'] == 'Gold']['Age']
+    x3 = athlete_df[athlete_df['Medal'] == 'Silver']['Age']
+    x4 = athlete_df[athlete_df['Medal'] == 'Bronze']['Age']
+
+    # Create DataFrame for Plotly Express
+    data = pd.DataFrame({'Overall Age': x1, 'Gold Medalist': x2, 'Silver Medalist': x3, 'Bronze Medalist': x4})
+
+    # Define colors for gold, silver, and bronze
+    colors = ['#FFD700', '#C0C0C0', '#CD7F32']
+
+    # Create distribution plot using Plotly Express
+    fig = px.histogram(data, x=data.columns, histnorm='probability density', marginal='rug', barmode='overlay', color_discrete_sequence=colors)
+
+    # Update layout
+    fig.update_layout(title='Distribution of Age')
+
+    # Show plot using Streamlit
+    st.plotly_chart(fig)
