@@ -201,6 +201,9 @@ if user_menu == 'Athlete wise Analysis':
 
     
     
+    
+def plot_density_graphs(*data_lists, labels=None):
+    # Set up the figure and axes
     fig, ax = plt.subplots(figsize=(10, 6))
     
     # Plot density graph for each data list
@@ -217,3 +220,9 @@ if user_menu == 'Athlete wise Analysis':
     
     # Show plot
     st.pyplot(fig)
+
+# Example data lists
+data_list1 = x1.to_list()
+data_list2 = x2.to_list()
+# Display the probability density graphs in Streamlit
+plot_density_graphs(data_list1, data_list2, labels=['Category A', 'Category B'])
