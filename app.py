@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.figure_factory as ff
 
+pip install scipy 
 df = pd.read_csv('athlete_events.csv')
 region_df = pd.read_csv('noc_regions.csv')
 
@@ -131,7 +132,7 @@ if user_menu == 'Country-wise Analysis':
     st.table(helper.most_successful_countrywise(df, selected_country))
 #-----------------------------------------------------------------------------------------
 if user_menu == 'Athlete wise Analysis':
-    athlete_df = df.drop_duplicates(subset=['Name', 'region', 'Year'])
+    """athlete_df = df.drop_duplicates(subset=['Name', 'region', 'Year'])
     athlete_df = athlete_df.dropna(subset=['Medal'])
 
     x1 = athlete_df['Age']
@@ -156,7 +157,7 @@ if user_menu == 'Athlete wise Analysis':
     fig.update_layout(autosize=False, width=800, height=500)
     st.title("Distribution of Age wrt Sports(Gold Medalist)")
     st.plotly_chart(fig)
-
+    """
     st.title("Men Vs Women Participation Over the Years")
     final = helper.men_vs_women(df)
     fig = px.line(final, x="Year", y=["Male", "Female"])
