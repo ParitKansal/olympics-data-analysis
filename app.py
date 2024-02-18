@@ -162,3 +162,13 @@ if user_menu == 'Athlete wise Analysis':
     fig = px.line(final, x="Year", y=["Male", "Female"])
     fig.update_layout(autosize=False, width=800, height=500)
     st.plotly_chart(fig)
+    
+    st.title('Height Vs Weight')
+    selected_sport = st.selectbox('Select a Sport', sport_list)
+    temp_df = helper.weight_v_height(df, selected_sport)
+    #temp_df = temp_df.dropna(subset=['Height', 'Weight'])
+    #if(len(temp_df) == 0):
+    #    st.write("No Complete Info")
+    fig,ax = plt.subplots()
+    ax = sns.scatterplot(x=temp_df['Weight'], y=temp_df['Height'], hue=temp_df['Medal'], style=temp_df['Sex'], s=60)
+    st.pyplot(fig)
