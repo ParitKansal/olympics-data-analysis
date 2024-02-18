@@ -191,9 +191,9 @@ if user_menu == 'Athlete wise Analysis':
 
     # Create Histogram traces
     hist1 = go.Histogram(x=x1, name='Overall Age', opacity=1)
-    hist2 = go.Histogram(x=x2, name='Gold Medalist', opacity=0.5)
-    hist3 = go.Histogram(x=x3, name='Silver Medalist', opacity=0.5)
-    hist4 = go.Histogram(x=x4, name='Bronze Medalist', opacity=0.5)
+    hist2 = go.Histogram(x=x2, name='Gold Medalist', opacity=1)
+    hist3 = go.Histogram(x=x3, name='Silver Medalist', opacity=1)
+    hist4 = go.Histogram(x=x4, name='Bronze Medalist', opacity=1)
 
     # Create figure object
     fig = go.Figure(data=[hist1, hist2, hist3, hist4])
