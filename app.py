@@ -133,7 +133,7 @@ if user_menu == 'Country-wise Analysis':
 #-----------------------------------------------------------------------------------------
 if user_menu == 'Athlete wise Analysis':
     athlete_df = df.drop_duplicates(subset=['Name', 'region', 'Year'])
-    athlete_df = athlete_df.dropna(subset=['Meadl'])
+    athlete_df = athlete_df.dropna(subset=['Medal'])
 
     x1 = athlete_df['Age']
     x2 = athlete_df[athlete_df['Medal'] == 'Gold']['Age']
