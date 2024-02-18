@@ -189,46 +189,20 @@ if user_menu == 'Athlete wise Analysis':
     x3 = athlete_df[athlete_df['Medal'] == 'Silver']['Age']
     x4 = athlete_df[athlete_df['Medal'] == 'Bronze']['Age']
 
-    # Create Histogram traces
-    hist1 = go.Histogram(x=x1, name='Overall Age', opacity=1)
-    hist2 = go.Histogram(x=x2, name='Gold Medalist', opacity=1)
-    hist3 = go.Histogram(x=x3, name='Silver Medalist', opacity=1)
-    hist4 = go.Histogram(x=x4, name='Bronze Medalist', opacity=1)
+    # Define colors for gold, silver, and bronze
+    colors = ['white', 'gold', 'silver', 'peru']
+
+    # Create Histogram traces with specified colors
+    hist1 = go.Histogram(x=x1, name='Overall Age', opacity=1, marker_color=colors[0])
+    hist2 = go.Histogram(x=x2, name='Gold Medalist', opacity=1, marker_color=colors[1])
+    hist3 = go.Histogram(x=x3, name='Silver Medalist', opacity=1, marker_color=colors[2])
+    hist4 = go.Histogram(x=x4, name='Bronze Medalist', opacity=1, marker_color=colors[3])
 
     # Create figure object
     fig = go.Figure(data=[hist1, hist2, hist3, hist4])
 
     # Update layout
     fig.update_layout(autosize=False, width=800, height=500, barmode='overlay', title='Distribution of Age')
-    fig.update_traces(marker_line_width=0)
-
-    # Show plot using Streamlit
-    st.plotly_chart(fig)
-
-
-    import pandas as pd
-    import plotly.express as px
-    import streamlit as st
-
-    athlete_df = df.drop_duplicates(subset=['Name', 'region', 'Year'])
-    athlete_df = athlete_df.dropna(subset=['Medal'])
-
-    x1 = athlete_df['Age']
-    x2 = athlete_df[athlete_df['Medal'] == 'Gold']['Age']
-    x3 = athlete_df[athlete_df['Medal'] == 'Silver']['Age']
-    x4 = athlete_df[athlete_df['Medal'] == 'Bronze']['Age']
-
-    # Create DataFrame for Plotly Express
-    data = pd.DataFrame({'Overall Age': x1, 'Gold Medalist': x2, 'Silver Medalist': x3, 'Bronze Medalist': x4})
-
-    # Define colors for gold, silver, and bronze
-    colors = ['#FFD700', '#C0C0C0', '#CD7F32']
-
-    # Create distribution plot using Plotly Express
-    fig = px.histogram(data, x=data.columns, histnorm='probability density', marginal='rug', barmode='overlay', color_discrete_sequence=colors)
-
-    # Update layout
-    fig.update_layout(title='Distribution of Age')
 
     # Show plot using Streamlit
     st.plotly_chart(fig)
