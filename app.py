@@ -201,19 +201,19 @@ if user_menu == 'Athlete wise Analysis':
 
     
     
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(10, 6))
+    
+    # Plot density graph for each data list
+    for i, data in enumerate(data_lists):
+        sns.kdeplot(data, label=labels[i] if labels else f'Data {i+1}', ax=ax)
 
-    # Plot histograms for x1 and x2 on the same axis
-    ax.hist(x1, bins=30, density=True, alpha=0.5, color='b', label='Data 1')
-    ax.hist(x2, bins=30, density=True, alpha=0.5, color='r', label='Data 2')
-
-    # Add labels and a title
+    # Add labels and title
     ax.set_xlabel('Value')
     ax.set_ylabel('Probability Density')
-    ax.set_title('Normal Distribution')
-
-    # Add a legend
+    ax.set_title('Probability Density Plot')
+    
+    # Add legend
     ax.legend()
-
-    # Show the plot
+    
+    # Show plot
     st.pyplot(fig)
