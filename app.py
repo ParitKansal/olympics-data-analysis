@@ -140,7 +140,6 @@ if user_menu == 'Athlete wise Analysis':
     st.title("Men Vs Women Participation Over the Years")
     final = helper.men_vs_women(df)
     fig = px.line(final, x="Year", y=["Male", "Female"])
-    fig.update_layout(autosize=False, width=800, height=500)
     st.plotly_chart(fig)
     
 
