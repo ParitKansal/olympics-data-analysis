@@ -97,3 +97,30 @@ def men_vs_women(df):
     final.fillna(0, inplace=True)
 
     return final
+
+
+def plot_density_graphs(*data_lists, labels=None, x_label):
+    fig, ax = plt.subplots(figsize=(10, 6))
+    
+    for i, data in enumerate(data_lists):
+        sns.kdeplot(data, label=labels[i] if labels else f'Data {i+1}', ax=ax)
+
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel('Probability')
+    ax.legend()
+    
+    return fig
+
+
+
+
+
+
+
+
+
+
+
+
+
+

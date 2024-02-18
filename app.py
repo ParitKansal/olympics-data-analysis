@@ -201,28 +201,6 @@ if user_menu == 'Athlete wise Analysis':
 
     
     
-    
-def plot_density_graphs(*data_lists, labels=None):
-    # Set up the figure and axes
-    fig, ax = plt.subplots(figsize=(10, 6))
-    
-    # Plot density graph for each data list
-    for i, data in enumerate(data_lists):
-        sns.kdeplot(data, label=labels[i] if labels else f'Data {i+1}', ax=ax)
-
-    # Add labels and title
-    ax.set_xlabel('Value')
-    ax.set_ylabel('Probability Density')
-    ax.set_title('Probability Density Plot')
-    
-    # Add legend
-    ax.legend()
-    
-    # Show plot
-    st.pyplot(fig)
-
-# Example data lists
-data_list1 = x1.to_list()
-data_list2 = x2.to_list()
-# Display the probability density graphs in Streamlit
-plot_density_graphs(data_list1, data_list2, labels=['Category A', 'Category B'])
+    data_list1 = x1.to_list()
+    data_list2 = x2.to_list()
+    st.pyplot(helper.plot_density_graphs(data_list1, data_list2, labels=['Category A', 'Category B'], x_label='Age'))
