@@ -156,7 +156,7 @@ if user_menu == 'Athlete wise Analysis':
         st.write("No Complete Info")
     fig,ax = plt.subplots()
     ax = sns.scatterplot(x=temp_df['Weight'], y=temp_df['Height'], hue=temp_df['Medal'], style=temp_df['Sex'], s=60)
-    fig.update_layout(autosize=False, width=800, height=500)
+    plt.figure(figsize=(8, 5))
     st.pyplot(fig)
     
 
@@ -179,6 +179,5 @@ if user_menu == 'Athlete wise Analysis':
 
 # Now selected_data_lists contains the data lists corresponding to the selected options
     fig = helper.plot_density_graphs(*selected_data_lists, labels=options, x_label='Age')
-    fig.update_layout(autosize=False, width=800, height=500)
-
+    plt.figure(figsize=(8, 5))
     st.pyplot(fig)
