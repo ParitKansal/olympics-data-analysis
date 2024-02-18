@@ -198,3 +198,14 @@ if user_menu == 'Athlete wise Analysis':
     fig = go.Figure(data=[hist1, hist2, hist3, hist4])
     fig.update_layout(autosize=False, width=800, height=500, barmode='overlay', title='Distribution of Age')
     st.plotly_chart(fig)
+
+
+    plt.hist(x1.tolist(), bins=30, density=True, alpha=0.5, color='b', label='Data 1')
+    plt.hist(x2.tolist(), bins=30, density=True, alpha=0.5, color='r', label='Data 2')
+    plt.xlabel('Value')
+    plt.ylabel('Probability Density')
+    plt.title('Normal Distribution')
+    plt.legend()
+
+    # Show the plot
+    plt.show()
