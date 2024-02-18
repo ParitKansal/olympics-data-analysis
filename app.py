@@ -179,9 +179,7 @@ if user_menu == 'Athlete wise Analysis':
     fig,ax = plt.subplots()
     ax = sns.scatterplot(x=temp_df['Weight'], y=temp_df['Height'], hue=temp_df['Medal'], style=temp_df['Sex'], s=60)
     st.pyplot(fig)
-
-
-
+    
 
     athlete_df = df.drop_duplicates(subset=['Name', 'region', 'Year'])
     athlete_df = athlete_df.dropna(subset=['Medal'])
