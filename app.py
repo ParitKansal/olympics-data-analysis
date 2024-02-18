@@ -6,6 +6,8 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.figure_factory as ff
+import plotly.graph_objects as go
+
 
 df = pd.read_csv('athlete_events.csv')
 region_df = pd.read_csv('noc_regions.csv')
@@ -179,7 +181,7 @@ if user_menu == 'Athlete wise Analysis':
     st.pyplot(fig)
 
 
-    import plotly.graph_objects as go
+
 
     athlete_df = df.drop_duplicates(subset=['Name', 'region', 'Year'])
     athlete_df = athlete_df.dropna(subset=['Medal'])
@@ -189,20 +191,12 @@ if user_menu == 'Athlete wise Analysis':
     x3 = athlete_df[athlete_df['Medal'] == 'Silver']['Age']
     x4 = athlete_df[athlete_df['Medal'] == 'Bronze']['Age']
 
-    # Define colors for gold, silver, and bronze
     colors = ['white', 'gold', 'silver', 'peru']
-
-    # Create Histogram traces with specified colors
     hist1 = go.Histogram(x=x1, name='Overall Age', opacity=1, marker_color=colors[0])
     hist2 = go.Histogram(x=x2, name='Gold Medalist', opacity=1, marker_color=colors[1])
     hist3 = go.Histogram(x=x3, name='Silver Medalist', opacity=1, marker_color=colors[2])
     hist4 = go.Histogram(x=x4, name='Bronze Medalist', opacity=1, marker_color=colors[3])
 
-    # Create figure object
     fig = go.Figure(data=[hist1, hist2, hist3, hist4])
-
-    # Update layout
     fig.update_layout(autosize=False, width=800, height=500, barmode='overlay', title='Distribution of Age')
-
-    # Show plot using Streamlit
     st.plotly_chart(fig)
