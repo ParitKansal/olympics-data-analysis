@@ -183,20 +183,21 @@ if user_menu == 'Athlete wise Analysis':
 
     athlete_df = df.drop_duplicates(subset=['Name', 'region', 'Year'])
     athlete_df = athlete_df.dropna(subset=['Medal'])
-
     x1 = athlete_df['Age']
     x2 = athlete_df[athlete_df['Medal'] == 'Gold']['Age']
     x3 = athlete_df[athlete_df['Medal'] == 'Silver']['Age']
     x4 = athlete_df[athlete_df['Medal'] == 'Bronze']['Age']
 
-    colors = ['white', 'gold', 'silver', 'peru']
-    hist1 = go.Histogram(x=x1, name='Overall Age', opacity=1, marker_color=colors[0])
-    hist2 = go.Histogram(x=x2, name='Gold Medalist', opacity=1, marker_color=colors[1])
-    hist3 = go.Histogram(x=x3, name='Silver Medalist', opacity=1, marker_color=colors[2])
-    hist4 = go.Histogram(x=x4, name='Bronze Medalist', opacity=1, marker_color=colors[3])
+    st.title("Probablity Distribution of Age")
+    options = st.multiselect(
+        'Type of Medalist',
+        ['Overall', 'Gold Medalist', 'Silver Medalist', 'Bronze Medalist'],
+        ['Overall']
+    )
 
-    fig = go.Figure(data=[hist1, hist2, hist3, hist4])
-    fig.update_layout(autosize=False, width=800, height=500, barmode='overlay', title='Distribution of Age')
-    st.plotly_chart(fig)
+    mp = {'Overall': x1, 'Gold Medalist': x1, 'Silver Medalist': x2, 'Bronze Medalist': x3}
+    selected_data_lists = [mp[i] for i in options]
 
-    st.pyplot(helper.plot_density_graphs(x1, x2, x3, x4, labels=['Overall Age', 'Gold Medalist', 'Silver Medalist', 'Bronze Medalist'], x_label='Age'))
+# Now selected_data_lists contains the data lists corresponding to the selected options
+
+    st.pyplot(helper.plot_density_graphs(*selected_data_lists, labels=options, x_label='Age'))
