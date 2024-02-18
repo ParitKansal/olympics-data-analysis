@@ -177,3 +177,30 @@ if user_menu == 'Athlete wise Analysis':
     fig,ax = plt.subplots()
     ax = sns.scatterplot(x=temp_df['Weight'], y=temp_df['Height'], hue=temp_df['Medal'], style=temp_df['Sex'], s=60)
     st.pyplot(fig)
+
+
+    import plotly.graph_objects as go
+
+    athlete_df = df.drop_duplicates(subset=['Name', 'region', 'Year'])
+    athlete_df = athlete_df.dropna(subset=['Medal'])
+
+    x1 = athlete_df['Age']
+    x2 = athlete_df[athlete_df['Medal'] == 'Gold']['Age']
+    x3 = athlete_df[athlete_df['Medal'] == 'Silver']['Age']
+    x4 = athlete_df[athlete_df['Medal'] == 'Bronze']['Age']
+
+    # Create Histogram traces
+    hist1 = go.Histogram(x=x1, name='Overall Age', opacity=0.5)
+    hist2 = go.Histogram(x=x2, name='Gold Medalist', opacity=0.5)
+    hist3 = go.Histogram(x=x3, name='Silver Medalist', opacity=0.5)
+    hist4 = go.Histogram(x=x4, name='Bronze Medalist', opacity=0.5)
+
+    # Create figure object
+    fig = go.Figure(data=[hist1, hist2, hist3, hist4])
+
+    # Update layout
+    fig.update_layout(autosize=False, width=800, height=500, barmode='overlay', title='Distribution of Age')
+    fig.update_traces(marker_line_width=0)
+
+    # Show plot using Streamlit
+    st.plotly_chart(fig)
